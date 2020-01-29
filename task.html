@@ -1,0 +1,168 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="task.css" />
+    <script src="task.js"></script>
+</head>
+
+<body  id ="load_body">
+    <div id="form">
+        <form id="form1" class="bdy">
+            <fieldset>
+                <legend><b>Registration</b></legend>
+                <div id="form2">
+                    FirstName : &nbsp<input type="text" id="fn" onkeyup="stopTypeing(),checkFname()" onkeydown="stopTypeing(),checkFname()"  required />
+                    <div class="clr" id="fner"></div>
+                    <br><br>
+                    LastName : &nbsp<input type="text" id="lname" onkeyup="stopTypeing(),checkLname()" required />
+                    <div class="clr" id="lner"></div>
+                    <br><br>
+                    Phn. no : &nbsp<input type="text" id="pn" maxlength="10" onkeypress="return event.charCode>=48 && event.charCode<=57" onkeyup="stopTypeing(),checkPhoneNO()"
+                        required />
+                    <div class="clr" id="pher"></div>
+                    <br><br>
+                    Gender :<div>
+                        <br>&nbsp &nbsp Male<input type="radio" name="gen" id="m" value="male"
+                            onclick="checkGender(),stopTypeing()" />
+                    <br>&nbsp &nbsp Female<input type="radio" name="gen" id="f" value="female"
+                            onclick="checkGender(),stopTypeing()"/>
+                        <br>&nbsp &nbsp Other<input type="radio" name="gen" id="o" value="other"
+                            onclick="checkGender(),stopTypeing()"/>
+                        <div class="clr" id="ger"></div>
+                    </div>
+                    <br><br>
+                    Branch : &nbsp <select id="br" onchange="checkBranch(),stopTypeing() " required>
+                        <option id="de" value="default">Please select</option>
+                        <option id="ce" value="ce">Computer</option>
+                        <option id="it" value="it">Information tech.</option>
+                        <option id="me" value="mech">Mechanical</option>
+                        <option id="el" value="elec">Electrical</option>
+                    </select>
+                    <div class="clr" id="ber"></div><br><br>
+                    Hobbies :
+                    <br>&nbsp &nbsp Dancing<input type="checkbox" name="hb" id="hbd" value="Dancing"
+                        onclick="checkHobby(),stopTypeing()" />
+                    <br>&nbsp &nbsp Painting<input type="checkbox" name="hb" id="hbp" value="Painting"
+                        onclick="checkHobby(),stopTypeing()" />
+                    <br>&nbsp &nbsp Cooking<input type="checkbox" name="hb" id="hbc" value="Cooking"
+                        onclick="checkHobby(),stopTypeing()" />
+                    <br>&nbsp &nbsp Gaming<input type="checkbox" name="hb" id="hbg" value="Gaming"
+                        onclick="checkHobby(),stopTypeing()" />
+                    &nbsp &nbsp&nbsp &nbsp *Select all<input type="checkbox" name="hball" id="hball" value="Select All"
+                         onclick="myAllHobbies(),checkHobby(),stopTypeing()" />
+                    <div class="clr" id="her"></div>
+                    <br><br>
+                    E-mail :&nbsp <input type="text" id="email" onkeyup="checkEmali(),stopTypeing()" />
+                    <div class="clr" id="emailer"></div>
+                    <br><br>
+                     Enroll no. :&nbsp <input type="text" id="en" maxlength="12" onkeypress="return event.charCode>=48 && event.charCode<=57"   onkeyup="stopTypeing(),checkEnroll()"
+                        required />
+                    <div class="clr" id="ener"></div>
+                    <br><br>
+                   
+
+                    Certificate :<input type="file" id="crt"  onclick="getCertificate()" onchange="getCertificate()" optional /><span class="o">(Optional)</span>
+                    <br><br>
+                    &nbsp<input type="button" id="myButton" value="Done"
+                        onclick="localstore(), tableFunction(),scrollDown(),addRowColor() ,clearForm()" disabled />
+                    <!-- &nbsp<input type="button" id="clear_done" value="clear" onclick="clearForm()" /> -->
+                    &nbsp<input type="button" value="Update" id="myupdate" 
+                        onclick="clearTable(),myUpdate(),localstore1(),tableFunction(),scrollDown(), editRowColor(),clearForm()" hidden/>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <!-- <div id="result">
+        <b>Added record display here </b><br><br>
+        <table border="2" class="space" id="mytable1">
+            <thead>
+                <th>Fname</th>
+                <th>Lname</th>
+                <th>Phone</th>
+                <th>Gender</th>
+                <th>Branch</th>
+                <th>Hobbies</th>
+                <th>Enroll</th>
+                <th>Email</th>
+                <th>FileName</th>
+            </thead>
+            <tr></tr>
+        </table><br><br></div> -->
+        <div>
+
+            <label><b>SEARCH:</b></label><input type="text" id="search1" onkeyup="mySearchRefresh(),myAllSearch()" />
+             <br><p id="labelOr"><b>OR</b><p>
+            <!-- <form id="searchForm"> -->
+            <fieldset id = "searchForm">
+                <legend><b>Search form</b></legend>
+                <div>
+                    <label>First-Name:</label>
+                    <input type="text" id="searchFn" /><br><br>
+                    <label>Last-Name:</label>
+                    <input type="text" id="searchLn" />
+                    <!-- <label>Gender:</label>
+                    <br>&nbsp &nbsp male<input type="radio" name="search_gen" id="search_m" value="male" onclick="checkGender(),stopTypeing()" >
+                    <br>&nbsp &nbsp female<input type="radio" name="search_gen" id="search_f" value="female" onclick="checkGender(),stopTypeing()">
+                    <br>&nbsp &nbsp other<input type="radio" name="search_gen" id="search_o" value="other" onclick="checkGender(),stopTypeing()"> -->
+
+                    <br><br>
+                    <label>Hobbies:</label>
+                    <br>&nbsp &nbsp &nbsp Dancing<input type="checkbox" name="searchHb" id="hbd" value="Dancing" />
+                    <br>&nbsp &nbsp &nbsp Painting<input type="checkbox" name="searchHb" id="hbp" value="Painting" />
+                    <br>&nbsp &nbsp &nbsp Cooking<input type="checkbox" name="searchHb" id="hbc" value="Cooking" />
+                    <br>&nbsp &nbsp &nbsp Gaming<input type="checkbox" name="searchHb" id="hbg" value="Gaming" />
+                    <br><br>
+                    <button onclick="mySearch()">Search</button>
+                </div>
+            </fieldset>
+            <!-- </form> -->
+            <br>
+
+            <br><b>Searched result display here:</b>
+            <br><br>
+            <table border="2" class="space" id="mytable2">
+                <thead>
+                    <th>Index</th>
+                    <th>Fname</th>
+                    <th>Lname</th>
+                    <th>Phone</th>
+                    <th>Gender</th>
+                    <th>Branch</th>
+                    <th>Hobbies</th>
+                    <th>Enroll</th>
+                    <th>Email</th>
+                    <th>FileName</th>
+                </thead>
+                <tbody id="tbody2">
+
+                </tbody>
+            </table>
+        </div>
+        <br><br>
+        <div id="result">
+            <b>Stored record display here</b><br><br>
+            <table border="2" class="space" id="mytable" style="float: left">
+                <thead id="mytableThead">
+                    <th>Index</th>
+                    <th><button class="btnthead" onclick="fnameSort()"><b>Fname</b></button></th>
+                    <th><button class="btnthead" onclick="lnameSort()"><b>Lname</b></button></th>
+                    <th>Phone</th>
+                    <th><button class="btnthead" onclick="genderSort()"><b>Gender</b></button></th>
+                    <th>Branch</th>
+                    <th>Hobbies</th>
+                    <th>Enroll</th>
+                    <th>Email</th>
+                    <th>FileName</th>
+                </thead>
+                <tbody id="tbody1">
+
+                </tbody>
+            </table>
+
+            <button  onclick=tableFunction()>Display on same page</button>
+            <a href="register.html" target="_parent"><button >Display on next page</button></a>
+        </div>
+</body>
+
+</html>
